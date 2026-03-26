@@ -73,3 +73,47 @@ Artifacts are published incrementally as the system evolves. The repository serv
 ---
 
 ## Repository Structure
+
+```text
+titan/
+├── README.md
+├── architecture/
+│   └── cluster-overview.md
+├── runbooks/
+│   └── Phase-1-RB-001.md
+└── incidents/
+    └── INC-001.md
+```
+
+---
+
+## Current Status
+
+- Infrastructure setup in progress  
+- Observability stack (Prometheus + Grafana) being deployed  
+- First fault injection cycle not yet executed  
+
+TITAN is an active build. The focus at this stage is establishing a stable baseline and defining repeatable experimental procedures.
+
+---
+
+## Background
+
+TITAN is maintained by **Amanyi Daniel**, a DevOps/Platform Engineer with experience operating Kubernetes environments across cloud and on-prem systems, and certifications including CKA and CKAD.
+
+The project is intended as a bridge between production infrastructure practice and distributed systems research, with a focus on understanding how real-world failure conditions influence system behavior.
+
+---
+
+## Intent
+
+TITAN is not a production platform or a homelab project.
+
+It is being developed as a research-oriented testbed to explore how distributed systems behave under infrastructure-level failure, with the long-term goal of contributing to more robust system design and analysis approaches.
+
+---
+
+## Contact
+
+- LinkedIn: https://www.linkedin.com/in/daniel-amanyi-87169472/
+- Email: amanyidaniel.io@gmail.com
