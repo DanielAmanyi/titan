@@ -20,11 +20,31 @@ TITAN is designed as a three-node cluster running on a single bare-metal host.
 
 ---
 
+## Architecture Diagram
+
+```text
+                ┌────────────────────────────┐
+                │     Bare Metal Host        │
+                │  Ubuntu + KVM / libvirt    │
+                └────────────┬───────────────┘
+                             │
+        ┌────────────────────┼────────────────────┐
+        │                    │                    │
+┌──────────────┐    ┌──────────────┐    ┌──────────────┐
+│ titan-cp-01  │    │ titan-worker │    │ titan-worker │
+│ ControlPlane │    │     -01      │    │     -02      │
+└──────────────┘    └──────────────┘    └──────────────┘
+        │                    │                    │
+        └──────────── Virtual Network ───────────┘
+```
+
+---
+
 ## Host Environment
 
-- **Hardware:** Single bare-metal machine (64GB RAM, multi-core CPU, 1TB storage)
-- **Operating System:** Ubuntu (LTS)
-- **Virtualization:** KVM / libvirt
+- Hardware: 64GB RAM, multi-core CPU, 1TB storage  
+- Operating System: Ubuntu (LTS)  
+- Virtualization: KVM / libvirt  
 
 Each node runs as a virtual machine to simulate a distributed environment while maintaining centralized control.
 
@@ -32,45 +52,42 @@ Each node runs as a virtual machine to simulate a distributed environment while 
 
 ## Networking Model
 
-- Nodes communicate over a virtual network managed by libvirt
-- Each node has a static internal IP
-- All inter-node communication occurs over this virtual network
+- Virtual network managed by libvirt  
+- Static internal IPs per node  
+- All inter-node communication occurs within this isolated network  
 
 Planned failure scenarios:
-- Network partition between worker nodes
-- Loss of connectivity to control plane
-- Partial packet loss / latency injection (future phase)
+- Network partition between worker nodes  
+- Loss of connectivity to control plane  
+- Latency or packet loss injection (future phase)  
 
 ---
 
 ## Orchestration Layer
 
-- **Platform:** Kubernetes
-- **Topology:** Single control plane (non-HA)
-- **Reasoning:**  
-  High availability is intentionally not configured at this stage.  
-  The goal is to observe how system behavior degrades under control plane instability.
+- Platform: Kubernetes  
+- Topology: Single control plane (non-HA)  
+
+Design decision:  
+High availability is intentionally not configured at this stage.  
+The goal is to observe system behavior under control plane instability.
 
 ---
 
 ## Observability (Planned)
 
-The system is being instrumented with:
-
-- Prometheus (metrics collection)
-- Grafana (visualization)
+- Prometheus for metrics collection  
+- Grafana for visualization  
 
 Target signals:
-- Node health and availability
-- Pod scheduling behavior
-- Resource utilization (CPU, memory)
-- Recovery timelines after failure events
+- Node health and availability  
+- Pod scheduling behavior  
+- CPU and memory utilization  
+- Recovery timelines after failure events  
 
 ---
 
 ## Design Constraints
-
-The following constraints are intentional:
 
 - No managed cloud services  
 - No external orchestration layers  
@@ -85,8 +102,8 @@ These constraints ensure:
 
 ## Future Extensions
 
-- Addition of edge nodes (e.g., Raspberry Pi) for heterogeneous environments  
-- Integration of GPU-backed nodes for ML workload testing  
+- Addition of edge nodes (e.g., Raspberry Pi)  
+- Integration of GPU-backed nodes for ML workloads  
 - Expansion to multi-host deployment  
 
 ---
@@ -96,5 +113,7 @@ These constraints ensure:
 - VM topology defined  
 - Base environment provisioning in progress  
 - Kubernetes cluster bootstrap in progress  
+
+---
 
 This document will be updated as the system moves from design to execution.
