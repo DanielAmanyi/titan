@@ -12,7 +12,7 @@ The platform is intentionally minimal: three nodes, no managed cloud services, a
 ## Architecture
 
 | Node | Role | Hypervisor |
-|---|---|---|
+|------|------|------------|
 | titan-cp-01 | Kubernetes Control Plane | KVM / libvirt |
 | titan-worker-01 | Worker Node | KVM / libvirt |
 | titan-worker-02 | Worker Node | KVM / libvirt |
@@ -64,7 +64,7 @@ Each experiment is intended to produce:
 ## Artifact Trail
 
 | ID | Type | Description | Status |
-|---|---|---|---|
+|----|------|------------|--------|
 | Phase(-1)-RB-001 | Runbook | Cluster bootstrap and baseline validation | In progress |
 | INC-001 | Incident Report | Initial fault injection scenario | Pending |
 
