@@ -1,4 +1,3 @@
-```markdown
 # Phase 1 Runbook — Node Failure Simulation
 
 ## Objective
@@ -47,4 +46,3 @@ kubectl get pods -o wide
 
 ## Notes
 Initial protocol draft — to be refined during execution.
-```
